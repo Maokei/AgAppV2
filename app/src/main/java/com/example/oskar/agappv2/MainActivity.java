@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rv_article);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-
+        this.contentHandler = new ArticleContentHandler();
 
         //Här ska en lista fyllas med articles.
         //Article article = new Article();
