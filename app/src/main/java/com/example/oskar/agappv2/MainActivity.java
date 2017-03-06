@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import java.util.ArrayList;
+import java.util.concurrent.ExecutionException;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(layoutManager);
 
         refreshList();
-        articleAdapter = new ArticleAdapter(articleList); // (3) Kommer artikellistan in rätt här?
+        articleAdapter = new ArticleAdapter(articleList);
         recyclerView.setAdapter(articleAdapter);
 
     }
@@ -35,11 +36,16 @@ public class MainActivity extends AppCompatActivity {
     private void refreshList(){
         rssReader = new RssReader();
         rssReader.execute(url);
-
+        try {
+            updateList(rssReader.get());
+        } catch (InterruptedException e1) {
+            e1.printStackTrace();
+        } catch (ExecutionException e1) {
+            e1.printStackTrace();
+        }
     }
 
     public void updateList(ArrayList arrayList){
         articleList = arrayList;
-        // (2) Kan data komma in här och fylla arraylisten med artiklar?
     }
 }
