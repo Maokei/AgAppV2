@@ -38,9 +38,7 @@ public class ArticleContentHandler extends DefaultHandler{
         else if(localName.equalsIgnoreCase("guid")){
             currentArticle.setGuid(chars.toString());
         }
-        else if(localName.equalsIgnoreCase("entry")){}
-
-        if(localName.equalsIgnoreCase("entry")){
+        else if(localName.equalsIgnoreCase("item")){
             articleList.add(currentArticle);
             currentArticle = new Article();
             articlesAdded++;
@@ -49,6 +47,7 @@ public class ArticleContentHandler extends DefaultHandler{
             }
 
         }
+
     }
 
     public void characters(char ch[], int start, int length) {

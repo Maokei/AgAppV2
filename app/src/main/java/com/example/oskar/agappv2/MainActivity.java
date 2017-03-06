@@ -25,15 +25,9 @@ public class MainActivity extends AppCompatActivity {
         recyclerView = (RecyclerView) findViewById(R.id.rv_article);
         LinearLayoutManager layoutManager = new LinearLayoutManager(this);
         recyclerView.setLayoutManager(layoutManager);
-        this.contentHandler = new ArticleContentHandler();
 
-        //Här ska en lista fyllas med articles.
-        //Article article = new Article();
-        //articleList.add(article);
         refreshList();
-
-        articleList = contentHandler.getArticleList();
-        articleAdapter = new ArticleAdapter(articleList);
+        articleAdapter = new ArticleAdapter(articleList); // (3) Kommer artikellistan in rätt här?
         recyclerView.setAdapter(articleAdapter);
 
     }
@@ -42,5 +36,10 @@ public class MainActivity extends AppCompatActivity {
         rssReader = new RssReader();
         rssReader.execute(url);
 
+    }
+
+    public void updateList(ArrayList arrayList){
+        articleList = arrayList;
+        // (2) Kan data komma in här och fylla arraylisten med artiklar?
     }
 }

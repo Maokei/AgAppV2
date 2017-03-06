@@ -35,7 +35,9 @@ public class RssReader extends AsyncTask<String, Void, ArrayList<Article>> {
 
             xr.setContentHandler(contentHandler);
             xr.parse(new InputSource(url.openStream()));
-            return contentHandler.getArticleList();
+            ArrayList result = contentHandler.getArticleList();
+
+            return result;
 
         }
         catch (IOException e){
@@ -48,4 +50,11 @@ public class RssReader extends AsyncTask<String, Void, ArrayList<Article>> {
             Log.e("Parser", e.getMessage());
         }
         return null;    }
+
+    @Override
+    protected void onPostExecute(ArrayList result){
+        if (result != null){
+            // (1) Hur får jag in data till Mainactivity när asyncen är färdig?
+        }
+    }
 }
